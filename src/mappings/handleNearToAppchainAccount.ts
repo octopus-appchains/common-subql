@@ -61,6 +61,6 @@ export async function handleNearToAppchainAccount(_event: SubstrateEvent) {
   await Promise.all([
     record.save(),
     handleExtrinsic(extrinsic, block),
-    handleEvent(block, _event, extrinsic),
+    // handleEvent(block, _event, extrinsic),
   ])
 }

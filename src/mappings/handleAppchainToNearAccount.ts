@@ -31,7 +31,7 @@ export async function handleAppchainToNearAccount(
     msgSq.save(),
     newMsg.save(),
     handleExtrinsic(extrinsic, block),
-    handleEvent(block, _event, extrinsic),
+    // handleEvent(block, _event, extrinsic),
   ])
 
   if (

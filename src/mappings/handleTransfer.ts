@@ -40,6 +40,6 @@ export async function handleTransfer(_event: SubstrateEvent): Promise<void> {
     checkAccount(to, block.timestamp),
     handleExtrinsic(extrinsic, block),
     record.save(),
-    handleEvent(block, _event, extrinsic),
+    // handleEvent(block, _event, extrinsic),
   ])
 }
