@@ -5,29 +5,45 @@ import assert from 'assert';
 
 
 
-export type EventProps = Omit<Event, NonNullable<FunctionPropertyNames<Event>>>;
+export type EventProps = Omit<Event, NonNullable<FunctionPropertyNames<Event>>| '_name'>;
 
 export class Event implements Entity {
 
-    constructor(id: string) {
-        this.id = id;
+    constructor(
+        
+            id: string,
+        
+        
+        
+        
+        
+        
+        
+    ) {
+        
+            this.id = id;
+        
     }
 
 
     public id: string;
 
-    public index: number;
+    public index?: number;
 
-    public section: string;
+    public section?: string;
 
-    public method: string;
+    public method?: string;
 
-    public data: string;
+    public data?: string;
 
     public blockId?: string;
 
     public extrinsicId?: string;
 
+
+    get _name(): string {
+        return 'Event';
+    }
 
     async save(): Promise<void>{
         let id = this.id;
@@ -81,7 +97,10 @@ export class Event implements Entity {
 
     static create(record: EventProps): Event {
         assert(typeof record.id === 'string', "id must be provided");
-        let entity = new this(record.id);
+        let entity = new this(
+        
+            record.id,
+        );
         Object.assign(entity,record);
         return entity;
     }

@@ -5,18 +5,36 @@ import assert from 'assert';
 
 
 
-export type ExtrinsicProps = Omit<Extrinsic, NonNullable<FunctionPropertyNames<Extrinsic>>>;
+export type ExtrinsicProps = Omit<Extrinsic, NonNullable<FunctionPropertyNames<Extrinsic>>| '_name'>;
 
 export class Extrinsic implements Entity {
 
-    constructor(id: string) {
-        this.id = id;
+    constructor(
+        
+            id: string,
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    ) {
+        
+            this.id = id;
+        
     }
 
 
     public id: string;
 
-    public hash: string;
+    public hash?: string;
 
     public method?: string;
 
@@ -40,6 +58,10 @@ export class Extrinsic implements Entity {
 
     public blockId?: string;
 
+
+    get _name(): string {
+        return 'Extrinsic';
+    }
 
     async save(): Promise<void>{
         let id = this.id;
@@ -100,7 +122,10 @@ export class Extrinsic implements Entity {
 
     static create(record: ExtrinsicProps): Extrinsic {
         assert(typeof record.id === 'string', "id must be provided");
-        let entity = new this(record.id);
+        let entity = new this(
+        
+            record.id,
+        );
         Object.assign(entity,record);
         return entity;
     }

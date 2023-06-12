@@ -5,12 +5,26 @@ import assert from 'assert';
 
 
 
-export type CallProps = Omit<Call, NonNullable<FunctionPropertyNames<Call>>>;
+export type CallProps = Omit<Call, NonNullable<FunctionPropertyNames<Call>>| '_name'>;
 
 export class Call implements Entity {
 
-    constructor(id: string) {
-        this.id = id;
+    constructor(
+        
+            id: string,
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    ) {
+        
+            this.id = id;
+        
     }
 
 
@@ -32,6 +46,10 @@ export class Call implements Entity {
 
     public parentCallId?: string;
 
+
+    get _name(): string {
+        return 'Call';
+    }
 
     async save(): Promise<void>{
         let id = this.id;
@@ -99,7 +117,10 @@ export class Call implements Entity {
 
     static create(record: CallProps): Call {
         assert(typeof record.id === 'string', "id must be provided");
-        let entity = new this(record.id);
+        let entity = new this(
+        
+            record.id,
+        );
         Object.assign(entity,record);
         return entity;
     }

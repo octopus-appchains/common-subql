@@ -5,12 +5,23 @@ import assert from 'assert';
 
 
 
-export type UpwardMessageProps = Omit<UpwardMessage, NonNullable<FunctionPropertyNames<UpwardMessage>>>;
+export type UpwardMessageProps = Omit<UpwardMessage, NonNullable<FunctionPropertyNames<UpwardMessage>>| '_name'>;
 
 export class UpwardMessage implements Entity {
 
-    constructor(id: string) {
-        this.id = id;
+    constructor(
+        
+            id: string,
+        
+        
+        
+        
+        
+        
+    ) {
+        
+            this.id = id;
+        
     }
 
 
@@ -26,6 +37,10 @@ export class UpwardMessage implements Entity {
 
     public blockId?: string;
 
+
+    get _name(): string {
+        return 'UpwardMessage';
+    }
 
     async save(): Promise<void>{
         let id = this.id;
@@ -79,7 +94,10 @@ export class UpwardMessage implements Entity {
 
     static create(record: UpwardMessageProps): UpwardMessage {
         assert(typeof record.id === 'string', "id must be provided");
-        let entity = new this(record.id);
+        let entity = new this(
+        
+            record.id,
+        );
         Object.assign(entity,record);
         return entity;
     }

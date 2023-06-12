@@ -5,12 +5,22 @@ import assert from 'assert';
 
 
 
-export type BridgeMessageEventProps = Omit<BridgeMessageEvent, NonNullable<FunctionPropertyNames<BridgeMessageEvent>>>;
+export type BridgeMessageEventProps = Omit<BridgeMessageEvent, NonNullable<FunctionPropertyNames<BridgeMessageEvent>>| '_name'>;
 
 export class BridgeMessageEvent implements Entity {
 
-    constructor(id: string) {
-        this.id = id;
+    constructor(
+        
+            id: string,
+        
+        
+        
+        
+        
+    ) {
+        
+            this.id = id;
+        
     }
 
 
@@ -24,6 +34,10 @@ export class BridgeMessageEvent implements Entity {
 
     public blockId?: string;
 
+
+    get _name(): string {
+        return 'BridgeMessageEvent';
+    }
 
     async save(): Promise<void>{
         let id = this.id;
@@ -77,7 +91,10 @@ export class BridgeMessageEvent implements Entity {
 
     static create(record: BridgeMessageEventProps): BridgeMessageEvent {
         assert(typeof record.id === 'string', "id must be provided");
-        let entity = new this(record.id);
+        let entity = new this(
+        
+            record.id,
+        );
         Object.assign(entity,record);
         return entity;
     }

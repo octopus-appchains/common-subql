@@ -5,12 +5,22 @@ import assert from 'assert';
 
 
 
-export type BlockProps = Omit<Block, NonNullable<FunctionPropertyNames<Block>>>;
+export type BlockProps = Omit<Block, NonNullable<FunctionPropertyNames<Block>>| '_name'>;
 
 export class Block implements Entity {
 
-    constructor(id: string) {
-        this.id = id;
+    constructor(
+        
+            id: string,
+        
+        
+        
+        
+        
+    ) {
+        
+            this.id = id;
+        
     }
 
 
@@ -24,6 +34,10 @@ export class Block implements Entity {
 
     public specVersion?: number;
 
+
+    get _name(): string {
+        return 'Block';
+    }
 
     async save(): Promise<void>{
         let id = this.id;
@@ -63,7 +77,10 @@ export class Block implements Entity {
 
     static create(record: BlockProps): Block {
         assert(typeof record.id === 'string', "id must be provided");
-        let entity = new this(record.id);
+        let entity = new this(
+        
+            record.id,
+        );
         Object.assign(entity,record);
         return entity;
     }

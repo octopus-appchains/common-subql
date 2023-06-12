@@ -5,12 +5,19 @@ import assert from 'assert';
 
 
 
-export type LastBridgeMessageEventSequenceProps = Omit<LastBridgeMessageEventSequence, NonNullable<FunctionPropertyNames<LastBridgeMessageEventSequence>>>;
+export type LastBridgeMessageEventSequenceProps = Omit<LastBridgeMessageEventSequence, NonNullable<FunctionPropertyNames<LastBridgeMessageEventSequence>>| '_name'>;
 
 export class LastBridgeMessageEventSequence implements Entity {
 
-    constructor(id: string) {
-        this.id = id;
+    constructor(
+        
+            id: string,
+        
+        
+    ) {
+        
+            this.id = id;
+        
     }
 
 
@@ -18,6 +25,10 @@ export class LastBridgeMessageEventSequence implements Entity {
 
     public sequence?: number;
 
+
+    get _name(): string {
+        return 'LastBridgeMessageEventSequence';
+    }
 
     async save(): Promise<void>{
         let id = this.id;
@@ -50,7 +61,10 @@ export class LastBridgeMessageEventSequence implements Entity {
 
     static create(record: LastBridgeMessageEventSequenceProps): LastBridgeMessageEventSequence {
         assert(typeof record.id === 'string', "id must be provided");
-        let entity = new this(record.id);
+        let entity = new this(
+        
+            record.id,
+        );
         Object.assign(entity,record);
         return entity;
     }

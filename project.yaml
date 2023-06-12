@@ -4,7 +4,7 @@ version: 1.0.0
 runner:
   node:
     name: '@subql/node'
-    version: '>=1.13.3'
+    version: '>=2.5.4'
   query:
     name: '@subql/query'
     version: '*'
@@ -14,8 +14,8 @@ schema:
   file: ./schema.graphql
 network:
   endpoint: >-
-    wss://gateway.mainnet.octopus.network/debionetwork/ae48005a0c7ecb4053394559a7f4069e
-  genesisHash: '0x996800af345b3109acdada9913e36d1efa98b89e7dcd0b61b70fdbfc13b2fa50'
+    wss://gateway.mainnet.octopus.network/fusotao/0efwa9v0crdx4dg3uj8jdmc5y7dj4ir2
+  genesisHash: '0xa7113159e275582ee71ee499b24378a2416f34dc5aaf714443f0d11c6c3d99d3'
 dataSources:
   - kind: substrate/Runtime
     startBlock: 1

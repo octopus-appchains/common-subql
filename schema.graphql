@@ -13,7 +13,7 @@ type Block @entity {
 type Extrinsic @entity {
   id: ID!
 
-  hash: String!
+  hash: String
   method: String @index
   section: String @index
   args: String
@@ -33,10 +33,10 @@ type Extrinsic @entity {
 type Event @entity {
   id: ID!
 
-  index: Int!
-  section: String! @index
-  method: String! @index
-  data: String!
+  index: Int
+  section: String @index
+  method: String @index
+  data: String
 
   block: Block #create relation to block
   extrinsic: Extrinsic #create relation to extrins
@@ -59,7 +59,7 @@ type Call @entity {
 
 type Account @entity {
   id: ID!
-  createdAt: Date!
+  createdAt: Date
   nonce: Int @index
   freeBalance: BigInt
   reservedBalance: BigInt

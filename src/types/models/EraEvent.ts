@@ -5,12 +5,24 @@ import assert from 'assert';
 
 
 
-export type EraEventProps = Omit<EraEvent, NonNullable<FunctionPropertyNames<EraEvent>>>;
+export type EraEventProps = Omit<EraEvent, NonNullable<FunctionPropertyNames<EraEvent>>| '_name'>;
 
 export class EraEvent implements Entity {
 
-    constructor(id: string) {
-        this.id = id;
+    constructor(
+        
+            id: string,
+        
+        
+        
+        
+        
+        
+        
+    ) {
+        
+            this.id = id;
+        
     }
 
 
@@ -28,6 +40,10 @@ export class EraEvent implements Entity {
 
     public blockId?: string;
 
+
+    get _name(): string {
+        return 'EraEvent';
+    }
 
     async save(): Promise<void>{
         let id = this.id;
@@ -95,7 +111,10 @@ export class EraEvent implements Entity {
 
     static create(record: EraEventProps): EraEvent {
         assert(typeof record.id === 'string', "id must be provided");
-        let entity = new this(record.id);
+        let entity = new this(
+        
+            record.id,
+        );
         Object.assign(entity,record);
         return entity;
     }

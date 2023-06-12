@@ -5,18 +5,30 @@ import assert from 'assert';
 
 
 
-export type AccountProps = Omit<Account, NonNullable<FunctionPropertyNames<Account>>>;
+export type AccountProps = Omit<Account, NonNullable<FunctionPropertyNames<Account>>| '_name'>;
 
 export class Account implements Entity {
 
-    constructor(id: string) {
-        this.id = id;
+    constructor(
+        
+            id: string,
+        
+        
+        
+        
+        
+        
+        
+    ) {
+        
+            this.id = id;
+        
     }
 
 
     public id: string;
 
-    public createdAt: Date;
+    public createdAt?: Date;
 
     public nonce?: number;
 
@@ -28,6 +40,10 @@ export class Account implements Entity {
 
     public feeFrozenBalance?: bigint;
 
+
+    get _name(): string {
+        return 'Account';
+    }
 
     async save(): Promise<void>{
         let id = this.id;
@@ -60,7 +76,10 @@ export class Account implements Entity {
 
     static create(record: AccountProps): Account {
         assert(typeof record.id === 'string', "id must be provided");
-        let entity = new this(record.id);
+        let entity = new this(
+        
+            record.id,
+        );
         Object.assign(entity,record);
         return entity;
     }

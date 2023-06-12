@@ -5,12 +5,23 @@ import assert from 'assert';
 
 
 
-export type SystemTokenTransferProps = Omit<SystemTokenTransfer, NonNullable<FunctionPropertyNames<SystemTokenTransfer>>>;
+export type SystemTokenTransferProps = Omit<SystemTokenTransfer, NonNullable<FunctionPropertyNames<SystemTokenTransfer>>| '_name'>;
 
 export class SystemTokenTransfer implements Entity {
 
-    constructor(id: string) {
-        this.id = id;
+    constructor(
+        
+            id: string,
+        
+        
+        
+        
+        
+        
+    ) {
+        
+            this.id = id;
+        
     }
 
 
@@ -26,6 +37,10 @@ export class SystemTokenTransfer implements Entity {
 
     public extrinsicId?: string;
 
+
+    get _name(): string {
+        return 'SystemTokenTransfer';
+    }
 
     async save(): Promise<void>{
         let id = this.id;
@@ -86,7 +101,10 @@ export class SystemTokenTransfer implements Entity {
 
     static create(record: SystemTokenTransferProps): SystemTokenTransfer {
         assert(typeof record.id === 'string', "id must be provided");
-        let entity = new this(record.id);
+        let entity = new this(
+        
+            record.id,
+        );
         Object.assign(entity,record);
         return entity;
     }

@@ -13,9 +13,13 @@ export async function createAccount({
     nonce,
     data: { free, reserved, miscFrozen, feeFrozen },
   } = await getAccount(accountId)
+  let _nonce = nonce
+  if (typeof _nonce !== 'number') {
+    _nonce = Number((nonce as any).toString())
+  }
   const record = Account.create({
     id: accountId,
-    nonce: Number(nonce.toString()),
+    nonce: _nonce,
     freeBalance: free.toBigInt(),
     reservedBalance: reserved.toBigInt(),
     miscFrozenBalance: miscFrozen.toBigInt(),
@@ -31,7 +35,11 @@ export async function syncAccount(account: Account) {
     nonce,
     data: { free, reserved, miscFrozen, feeFrozen },
   } = await getAccount(account.id)
-  account.nonce = nonce
+  let _nonce = nonce
+  if (typeof _nonce !== 'number') {
+    _nonce = Number((nonce as any).toString())
+  }
+  account.nonce = _nonce
   account.freeBalance = free.toBigInt()
   account.reservedBalance = reserved.toBigInt()
   account.miscFrozenBalance = miscFrozen.toBigInt()

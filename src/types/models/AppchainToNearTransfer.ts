@@ -5,12 +5,30 @@ import assert from 'assert';
 
 
 
-export type AppchainToNearTransferProps = Omit<AppchainToNearTransfer, NonNullable<FunctionPropertyNames<AppchainToNearTransfer>>>;
+export type AppchainToNearTransferProps = Omit<AppchainToNearTransfer, NonNullable<FunctionPropertyNames<AppchainToNearTransfer>>| '_name'>;
 
 export class AppchainToNearTransfer implements Entity {
 
-    constructor(id: string) {
-        this.id = id;
+    constructor(
+        
+            id: string,
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+    ) {
+        
+            this.id = id;
+        
     }
 
 
@@ -40,6 +58,10 @@ export class AppchainToNearTransfer implements Entity {
 
     public extrinsicId?: string;
 
+
+    get _name(): string {
+        return 'AppchainToNearTransfer';
+    }
 
     async save(): Promise<void>{
         let id = this.id;
@@ -135,7 +157,10 @@ export class AppchainToNearTransfer implements Entity {
 
     static create(record: AppchainToNearTransferProps): AppchainToNearTransfer {
         assert(typeof record.id === 'string', "id must be provided");
-        let entity = new this(record.id);
+        let entity = new this(
+        
+            record.id,
+        );
         Object.assign(entity,record);
         return entity;
     }
